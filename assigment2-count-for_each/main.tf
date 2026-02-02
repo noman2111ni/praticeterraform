@@ -39,7 +39,7 @@ resource "aws_security_group" "my_security_group" {
 # Create an EC2 instance
 resource "aws_instance" "my_second_instance" {
   # count                  = 2 # count is a meta-argument to create multiple instances
-  for_each = var.instances # using for_each to create instances based on the map variable
+  for_each               = var.instances # using for_each to create instances based on the map variable
   ami                    = data.aws_ami.amazon_linux.id
   key_name               = aws_key_pair.my_key_pair.key_name
   instance_type          = each.value # using instance type from the map variable
