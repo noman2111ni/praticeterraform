@@ -1,6 +1,10 @@
 output "my_ec2_public_id" {
-  value = aws_instance.my_second_instance[*].public_ip
+  value = {
+    for k, instance in aws_instance.my_second_instance : k => instance.id 
+  }
 }
 output "my_ec2_public_DNS" {
-  value = aws_instance.my_second_instance[*].public_dns
+  value = {
+    for k, instances in aws_instance.my_second_instance : k => instances.public_dns
+  }
 }
